@@ -1,11 +1,15 @@
 import { PlusIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import DataRow from './DataRow';
+import Link from 'next/link';
 
 async function getCredencials() {
-	return await fetch('http://localhost:8080/ultimatepassword/credencial', {
-		next: { revalidate: 0 },
-		method: 'GET',
-	}).then(res => res.json());
+	return await fetch(
+		'http://localhost:8080/ultimatepassword/credencial?page=0&size=200',
+		{
+			next: { revalidate: 0 },
+			method: 'GET',
+		}
+	).then(res => res.json());
 }
 
 export default async function Page() {
@@ -19,7 +23,11 @@ export default async function Page() {
 				<div className="flex justify-between">
 					<h2 className="font-medium text-3xl">Minhas Credenciais</h2>
 					<div className="flex gap-x-4 justify-center items-center">
-						<PlusIcon className="h-7 w-7 stroke-2" />
+						<button>
+							<Link href={'credencial/new'}>
+								<PlusIcon className="h-7 w-7 stroke-2" />
+							</Link>
+						</button>
 						<MagnifyingGlassIcon className="h-7 w-7 stroke-2" />
 					</div>
 				</div>

@@ -9,10 +9,10 @@ export default function Header() {
 			<nav>
 				<ul className="flex gap-x-14 font-medium text-xl">
 					<li>
-						<Link href="credencial">Credenciais</Link>
+						<Link href="/credencial">Credenciais</Link>
 					</li>
 					<li>
-						<Link href="cadastro">Cadastro</Link>
+						<Link href="/cadastro">Cadastro</Link>
 					</li>
 					<li>
 						<Link
