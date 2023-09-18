@@ -1,21 +1,15 @@
 import { PlusIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import DataRow from './DataRow';
 import Link from 'next/link';
-
-async function getCredencials() {
-	return await fetch(
-		'http://localhost:8080/ultimatepassword/credencial?page=0&size=200',
-		{
-			next: { revalidate: 0 },
-			method: 'GET',
-		}
-	).then(res => res.json());
-}
+import { getCredencials } from '../actions/credencial';
 
 export default async function Page() {
 	const credencials = await getCredencials();
 
-	const data = credencials['_embedded']['entityModelList'];
+	let data = [];
+	if (credencials['_embedded']) {
+		data = credencials['_embedded']['entityModelList'];
+	}
 
 	return (
 		<div className="flex justify-center items-center h-full">
