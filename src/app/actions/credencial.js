@@ -1,6 +1,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import { cookies } from 'next/headers';
 
 export async function create(formData) {
 	const url = 'http://localhost:8080/ultimatepassword/credencial';
@@ -25,11 +26,15 @@ export async function create(formData) {
 }
 
 export async function getCredencials() {
+	const token = cookies().get('ultimatepassword_token');
 	return await fetch(
 		'http://localhost:8080/ultimatepassword/credencial?page=0&size=200',
 		{
 			next: { revalidate: 0 },
 			method: 'GET',
+			headers: {
+				Authorization: `Bearer ${token.value}`,
+			},
 		}
 	).then(res => res.json());
 }
