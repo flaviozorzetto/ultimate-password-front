@@ -5,6 +5,8 @@ import { redirect } from 'next/navigation';
 
 export default function Page() {
 	async function submitHandler(formData) {
+		console.log(formData);
+
 		redirect('/login');
 	}
 

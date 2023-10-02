@@ -2,6 +2,8 @@
 
 import { cookies } from 'next/headers';
 
+const url = process.env.NEXT_PUBLIC_BASE_URL + '/login';
+
 export async function apiLogin(credenciais) {
 	const options = {
 		method: 'POST',
@@ -11,10 +13,7 @@ export async function apiLogin(credenciais) {
 		},
 	};
 
-	const resp = await fetch(
-		'http://localhost:8080/ultimatepassword/login',
-		options
-	);
+	const resp = await fetch(url, options);
 
 	if (resp.status !== 200) return { error: 'usuário ou senha inválidas' };
 
