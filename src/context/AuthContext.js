@@ -12,7 +12,6 @@ export function AuthProvider({ children }) {
 	const { push } = useRouter();
 
 	const login = async credenciais => {
-		console.log(credenciais);
 		await apiLogin(credenciais);
 
 		setUser({

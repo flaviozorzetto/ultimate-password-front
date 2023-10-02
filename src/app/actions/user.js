@@ -13,6 +13,7 @@ export async function apiLogin(credenciais) {
 		},
 	};
 
+	console.log(url);
 	const resp = await fetch(url, options);
 
 	if (resp.status !== 200) return { error: 'usuário ou senha inválidas' };
