@@ -44,22 +44,16 @@ export async function getCredencials() {
 }
 
 export async function getCredencial(id) {
-	return await fetch(
-		`http://localhost:8080/ultimatepassword/credencial/${id}`,
-		{
-			next: { revalidate: 0 },
-			method: 'GET',
-		}
-	).then(res => res.json());
+	return await fetch(`${url}${id}`, {
+		next: { revalidate: 0 },
+		method: 'GET',
+	}).then(res => res.json());
 }
 
 export async function destroy(id) {
-	const response = await fetch(
-		`http://localhost:8080/ultimatepassword/credencial/${id}`,
-		{
-			method: 'DELETE',
-		}
-	).then(res => res.text());
+	const response = await fetch(`${url}${id}`, {
+		method: 'DELETE',
+	}).then(res => res.text());
 
 	if (!response.ok) {
 		return {
